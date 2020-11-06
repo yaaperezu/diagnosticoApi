@@ -4,11 +4,11 @@ from flask_restful import Resource
 
 class PacienteApi(Resource):
     def get(self):
-        clients = Paciente.objects().to_json()
-        return Response(clients, mimetype="application/json", status=200)
+        patiens = Paciente.objects().to_json()
+        return Response(patiens, mimetype="application/json", status=200)
 
     def post(self):
         body = request.get_json()
-        client = Paciente(**body).save()
-        id = client.id
+        patiens = Paciente(**body).save()
+        id = patiens.id
         return {'id': str(id)}, 200

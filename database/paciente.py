@@ -1,8 +1,9 @@
 from .db import db
 
 class Paciente(db.Document):
-    doc_id = db.StringField(required=True, unique=True)
+    documenNumber = db.StringField(required=True)
     name = db.StringField(required=True)
     last_name = db.StringField(required=True)
-    preexistence = db.ListField(db.StringField(), required=True)
+    gender = db.StringField(required=True)
+    birthDate = db.StringField(required=True)
 

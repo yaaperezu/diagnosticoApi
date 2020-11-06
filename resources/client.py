@@ -9,7 +9,6 @@ class ClientsApi(Resource):
         clients = Client.objects().to_json()
         return Response(clients, mimetype="application/json", status=200)
 
-    @jwt_required
     def post(self):
         body = request.get_json()
         client = Client(**body).save()

@@ -21,7 +21,7 @@ class PacientesApi(Resource):
 
     def delete(self, documenNumber):
         patiens = Paciente.objects.get(documenNumber=documenNumber).delete()
-        return 'Se elimino el paciente', 200
+        return 'Se elimino el paciente correctamente', 200
 
     def get(self, documenNumber):
         try:

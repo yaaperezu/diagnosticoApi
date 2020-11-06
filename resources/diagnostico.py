@@ -14,18 +14,18 @@ class DiagnosticoApi(Resource):
         return {'id': str(id)}, 200
 
 class DiagnosticosApi(Resource):
-    def put(self, id):
+    def put(self, codDiagnostico):
         body = request.get_json()
-        Diagnostico.objects.get(id=id).update(**body)
-        return '', 200
+        Diagnostico.objects.get(codDiagnostico=codDiagnostico).update(**body)
+        return 'Se actualizo el diagnostico', 200
 
-    def delete(self, id):
-        diagnostico = Diagnostico.objects.get(id=id).delete()
-        return '', 200
+    def delete(self, codDiagnostico):
+        diagnostico = Diagnostico.objects.get(codDiagnostico=codDiagnostico).delete()
+        return 'Se elimino el diagnostico', 200
 
-    def get(self, id):
+    def get(self, codDiagnostico):
         try:
-            diagnostico = Diagnostico.objects.get(id=id).to_json()
+            diagnostico = Diagnostico.objects.get(codDiagnostico=codDiagnostico).to_json()
             return Response(diagnostico, mimetype="application/json", status=200)
         except Exception as error:
             return Response(error, status=400, mimetype='application/json')

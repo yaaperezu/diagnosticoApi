@@ -14,18 +14,18 @@ class PacienteApi(Resource):
         return {'id': str(id)}, 200
 
 class PacientesApi(Resource):
-    def put(self, id):
+    def put(self, documenNumber):
         body = request.get_json()
-        Paciente.objects.get(id=id).update(**body)
-        return '', 200
+        Paciente.objects.get(documenNumber=documenNumber).update(**body)
+        return 'Se actualizo el paciente', 200
 
-    def delete(self, id):
-        patiens = Paciente.objects.get(id=id).delete()
-        return '', 200
+    def delete(self, documenNumber):
+        patiens = Paciente.objects.get(documenNumber=documenNumber).delete()
+        return 'Se elimino el paciente', 200
 
-    def get(self, id):
+    def get(self, documenNumber):
         try:
-            patiens = Paciente.objects.get(id=id).to_json()
+            patiens = Paciente.objects.get(documenNumber=documenNumber).to_json()
             return Response(patiens, mimetype="application/json", status=200)
         except Exception as error:
             return Response(error, status=400, mimetype='application/json')
